@@ -62,18 +62,29 @@ class _MyHomePageState extends State<MyHomePage> {
             print('Menu Icon Pressed');
           },
         ),
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Theme.of(context).primaryTextTheme.headline1.color,
+          ),
+          textAlign: TextAlign.center,
+        ),
         actions: <Widget>[
-          Icon(
-            Icons.lightbulb_outline,
-            color: Theme.of(context).primaryIconTheme.color,
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Icon(
+              Icons.lightbulb_outline,
+              color: Theme.of(context).primaryIconTheme.color,
+            ),
           ),
         ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            ToDoCard(),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -100,6 +111,23 @@ class ToDoCard extends StatefulWidget {
 class _ToDoCardState extends State<ToDoCard> {
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return Center(
+      child: Card(
+        elevation: 2.0,
+        borderOnForeground: true,
+        semanticContainer: true,
+        child: InkWell(
+          splashColor: Colors.amberAccent,
+          onTap: (){
+            print('[] inwell widh=get  was tapped inshort container was tapped ');
+          },
+
+          child: Container(
+            width: 300.0,
+            height: 400.0,
+          ),
+        ),
+      ),
+    );
   }
 }
