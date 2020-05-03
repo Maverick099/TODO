@@ -79,11 +79,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: Stack(
+          overflow: Overflow.visible,
           children: <Widget>[
-            ToDoCard(),
+            Positioned(
+              right: 20.0,
+              child: Container(
+                height: 380,
+                width: 280,
+              ),
+            ),
+            Container(
+              height: 360,
+              width: 260,
+            ),
+            Positioned(
+              right: 5.0,
+              left: 50,
+              child: ToDoCard()),
           ],
         ),
       ),
@@ -91,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           incrementCounter();
           _incrementCounter();
+          print("action button pressed");
         },
         tooltip: 'new',
         child: Icon(
@@ -111,20 +127,25 @@ class ToDoCard extends StatefulWidget {
 class _ToDoCardState extends State<ToDoCard> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 2.0,
-        borderOnForeground: true,
-        semanticContainer: true,
-        child: InkWell(
-          splashColor: Colors.amberAccent,
-          onTap: (){
-            print('[] inwell widh=get  was tapped inshort container was tapped ');
-          },
-
-          child: Container(
-            width: 300.0,
-            height: 400.0,
+    return Card(
+      elevation: 12.0,
+      borderOnForeground: true,
+      semanticContainer: true,
+      child: InkWell(
+        splashColor: Colors.tealAccent,
+        onTap: () {
+          print('[] inwell widh=get  was tapped inshort container was tapped ');
+        },
+        child: Container(
+          width: 300.0,
+          height: 400.0,
+          child: Center(
+            child: Text(
+              "",
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
           ),
         ),
       ),
