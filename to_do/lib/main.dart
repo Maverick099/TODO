@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed:(){
           incrementCounter();
-          _incrementCounter;
+          _incrementCounter();
         
         } ,
         tooltip: 'Increment',
