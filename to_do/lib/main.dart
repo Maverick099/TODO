@@ -10,13 +10,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'TO DO App',
       theme: ThemeData(
+        primaryIconTheme: IconThemeData(color: Colors.white),
         appBarTheme: AppBarTheme(
           color: Colors.amber,
           elevation: 0.0,
         ),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
         primaryTextTheme: TextTheme(
           headline1: TextStyle(
             color: Colors.white,
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'To Do'),
     );
   }
 }
@@ -54,23 +55,25 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.amber,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: Theme.of(context).primaryIconTheme.color,
+          onPressed: () {
+            print('Menu Icon Pressed');
+          },
+        ),
         title: Text(widget.title),
+        actions: <Widget>[
+          Icon(
+            Icons.lightbulb_outline,
+            color: Theme.of(context).primaryIconTheme.color,
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).primaryTextTheme.headline1,
-            ),
-          ],
+          children: <Widget>[],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -78,9 +81,25 @@ class _MyHomePageState extends State<MyHomePage> {
           incrementCounter();
           _incrementCounter();
         },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        tooltip: 'new',
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).primaryIconTheme.color,
+        ),
+      ),
     );
+  }
+}
+
+class ToDoCard extends StatefulWidget {
+  ToDoCard({Key key}) : super(key: key);
+  @override
+  _ToDoCardState createState() => _ToDoCardState();
+}
+
+class _ToDoCardState extends State<ToDoCard> {
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
   }
 }
