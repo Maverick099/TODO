@@ -137,6 +137,7 @@ class ToDoCard extends StatefulWidget {
 }
 
 class _ToDoCardState extends State<ToDoCard> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -151,15 +152,107 @@ class _ToDoCardState extends State<ToDoCard> {
         onTap: () {
           print('[] inwell widh=get  was tapped inshort container was tapped ');
         },
+        borderRadius: BorderRadius.circular(10.0),
         child: Container(
           width: 300.0,
           height: 400.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.blue.withOpacity(0.5),
+          ),
           child: Center(
-            child: Text(
-              "",
-              style: TextStyle(
-                fontSize: 20.0,
-              ),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  color: Colors.transparent,
+                  height: 50,
+                  width: 300,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+                      child: Container(
+                        // color: Colors.red,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              width: 225,
+                              height: 34,
+                              // color: Colors.blue,
+
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: TextField(
+                                  keyboardAppearance: Brightness.dark,
+                                  maxLines: 1,
+                                  maxLength: 20,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  decoration: InputDecoration(
+                                    hintText: "Add Title",
+                                    hintStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    icon: Icon(
+                                      Icons.lightbulb_outline,
+                                      color: (!isChecked)
+                                          ? Colors.amberAccent
+                                          : null,
+                                    ),
+                                    counterText: '',
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    disabledBorder: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 35,
+                              height: 34,
+
+                              // color: Colors.green,
+                              child: IconButton(
+                                iconSize: 30,
+                                splashColor: Colors.amberAccent,
+                                icon: (isChecked)
+                                    ? Icon(Icons.check_box)
+                                    : Icon(Icons.check_box_outline_blank),
+                                onPressed: () {
+                                  setState(() {
+                                    isChecked = !isChecked;
+                                  });
+                                  print("The Staus of ischecked is $isChecked");
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Container(
+                    width: 300,
+                    height: 342,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30.0),
+                          topRight: Radius.circular(30.0),
+                          bottomLeft: Radius.circular(10.0),
+                          bottomRight: Radius.circular(10.0)),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
