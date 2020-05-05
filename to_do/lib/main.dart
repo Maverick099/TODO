@@ -82,23 +82,35 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
         child: Stack(
-          overflow: Overflow.visible,
+          alignment: Alignment.center,
           children: <Widget>[
             Positioned(
-              right: 20.0,
-              child: Container(
-                height: 380,
-                width: 280,
+              top: 30,
+              right: 20,
+              child: Card(
+                elevation: 8,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Container(width: 300, height: 400),
               ),
             ),
-            Container(
-              height: 360,
-              width: 260,
+            Positioned(
+              top: 30,
+              right: 30,
+              child: Card(
+                elevation: 8,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Container(width: 300, height: 400),
+              ),
             ),
             Positioned(
-              right: 5.0,
-              left: 50,
-              child: ToDoCard()),
+              top: 30,
+              right: 40,
+              child: ToDoCard(),
+            ),
           ],
         ),
       ),
@@ -128,9 +140,12 @@ class _ToDoCardState extends State<ToDoCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 12.0,
+      elevation: 10.0,
       borderOnForeground: true,
       semanticContainer: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: InkWell(
         splashColor: Colors.tealAccent,
         onTap: () {
