@@ -1,1 +1,1 @@
-int minimisedListCounter = 3;
+int minimisedListCounter = 20;

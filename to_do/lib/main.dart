@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+import 'package:to_do/globalVariables.dart' as global;
 
 void main() {
   runApp(MyApp());
@@ -40,16 +43,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {});
-  }
-
-  void incrementCounter() {
-    _counter++;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,8 +109,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          incrementCounter();
-          _incrementCounter();
           print("action button pressed");
         },
         tooltip: 'new',
@@ -238,17 +229,22 @@ class _ToDoCardState extends State<ToDoCard> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding:
+                      const EdgeInsets.only(top: 8.0, left: 5.0, right: 5.0),
                   child: Container(
-                    width: 300,
                     height: 342,
+                    width: 290,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0),
+                          topLeft: Radius.circular(25.0),
+                          topRight: Radius.circular(25.0),
                           bottomLeft: Radius.circular(10.0),
                           bottomRight: Radius.circular(10.0)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(8.0, 15.0, 8.0, 5.0),
+                      child: MinimisedCardList(),
                     ),
                   ),
                 ),
@@ -256,6 +252,52 @@ class _ToDoCardState extends State<ToDoCard> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MinimisedCardList extends StatefulWidget {
+  MinimisedCardList({Key key}) : super(key: key);
+  @override
+  _MinimisedCardListState createState() => _MinimisedCardListState();
+}
+
+class _MinimisedCardListState extends State<MinimisedCardList> {
+  @override
+  Widget build(BuildContext context) {
+    bool minimisedIsChecked = false;
+    return ListView.separated(
+      itemCount: global.minimisedListCounter,
+      itemBuilder: (context, index) {
+        return Container(
+          height: 30,
+          width: 280,
+          // color: Colors.blueAccent,
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(2.0),
+                child: Center(
+                  child: IconButton(
+                      icon: (!minimisedIsChecked)
+                          ? Icon(Icons.check_box_outline_blank)
+                          : Icon(Icons.check_box),
+                      onPressed: () {
+                        minimisedIsChecked = !minimisedIsChecked;
+                        setState(() {
+                          
+                        });
+                      }),
+                ),
+              )
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (context, index) => new Divider(
+        thickness: 2.0,
+        height: 5.0,
       ),
     );
   }
